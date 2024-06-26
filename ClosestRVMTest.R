@@ -24,7 +24,7 @@ library(shinyjs)
 
 
 #Run this on your first time be sure to change the file path first
-#setwd("C:/Users/josh.kocik/Documents/RProjects/NearestRVM/ClosestRiverMile")
+#setwd("C:/Users/josh.kocik/Documents/RProjects/NearestRVM/ClosestRiverMile/MissouriRiverWebsite")
 
 RVM<-read.csv("RiverMilesTenths.csv")
 
