@@ -110,10 +110,19 @@ SiouxCityForecast<-get_forecast("Sioux City, IA, USA", units="imperial")|>
 SiouxCityForecast$DateTimeCentral<-with_tz(SiouxCityForecast$DateTimeUTC, "America/Chicago")
 SiouxCityNextDay<-SiouxCityForecast|>
   mutate(
+    IconPrefix=c("<img src=\"https://openweathermap.org/img/wn/")
+  )|>
+  mutate(
+    IconSuffix=c("@2x.png\" height=\"52\"></img>")
+  )|>
+  unite(
+    Icon, c("IconPrefix","weather_icon","IconSuffix"), sep = ""
+  )|>
+  mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
-  rename(Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
          "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
 
 #Decatur Gage Height
@@ -149,10 +158,19 @@ DecaturForecast<-get_forecast("Decatur, NE, USA", units="imperial")|>
 DecaturForecast$DateTimeCentral<-with_tz(DecaturForecast$DateTimeUTC, "America/Chicago")
 DecaturNextDay<-DecaturForecast|>
   mutate(
+    IconPrefix=c("<img src=\"https://openweathermap.org/img/wn/")
+  )|>
+  mutate(
+    IconSuffix=c("@2x.png\" height=\"52\"></img>")
+  )|>
+  unite(
+    Icon, c("IconPrefix","weather_icon","IconSuffix"), sep = ""
+  )|>
+  mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
-  rename(Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
          "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
 
 #Nebraska City Gage height
@@ -188,10 +206,19 @@ NECityForecast<-get_forecast("Nebraska City, NE, USA", units="imperial")|>
 NECityForecast$DateTimeCentral<-with_tz(NECityForecast$DateTimeUTC, "America/Chicago")
 NECityNextDay<-NECityForecast|>
   mutate(
+    IconPrefix=c("<img src=\"https://openweathermap.org/img/wn/")
+  )|>
+  mutate(
+    IconSuffix=c("@2x.png\" height=\"52\"></img>")
+  )|>
+  unite(
+    Icon, c("IconPrefix","weather_icon","IconSuffix"), sep = ""
+  )|>
+  mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
-  rename(Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
          "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
 
 #Rulo Gage height
@@ -227,10 +254,19 @@ RuloForecast<-get_forecast("Rulo, NE, USA", units="imperial")|>
 RuloForecast$DateTimeCentral<-with_tz(RuloForecast$DateTimeUTC, "America/Chicago")
 RuloNextDay<-as.data.frame(RuloForecast)|>
   mutate(
+    IconPrefix=c("<img src=\"https://openweathermap.org/img/wn/")
+  )|>
+  mutate(
+    IconSuffix=c("@2x.png\" height=\"52\"></img>")
+  )|>
+  unite(
+    Icon, c("IconPrefix","weather_icon","IconSuffix"), sep = ""
+  )|>
+  mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
-  rename(Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
          "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
 
 #Platte River at Louisville
@@ -266,10 +302,19 @@ LouisvilleForecast<-get_forecast("Louisville, NE, USA", units="imperial")|>
 LouisvilleForecast$DateTimeCentral<-with_tz(LouisvilleForecast$DateTimeUTC, "America/Chicago")
 LouisvilleNextDay<-LouisvilleForecast|>
   mutate(
+    IconPrefix=c("<img src=\"https://openweathermap.org/img/wn/")
+  )|>
+  mutate(
+    IconSuffix=c("@2x.png\" height=\"52\"></img>")
+  )|>
+  unite(
+    Icon, c("IconPrefix","weather_icon","IconSuffix"), sep = ""
+  )|>
+  mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
-  rename(Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
          "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
 
 #Links for Boat Ramps
@@ -429,8 +474,8 @@ server <- function(input, output, session) {
   })
   
   output$SiouxCityWeather<-renderDT({
-    datatable(SiouxCityNextDay, extensions="FixedColumns", style="bootstrap4",
-              rowname=FALSE, options=list(pageLength=5, fixedColumns=list(leftColumns=1)))
+    datatable(SiouxCityNextDay, escape=FALSE,extensions="FixedColumns", style="bootstrap4",
+              rowname=FALSE, options=list(pageLength=5, dom="tp",fixedColumns=list(leftColumns=1)))
   })
   
   output$DecaturPlot<-renderPlot({
@@ -438,8 +483,8 @@ server <- function(input, output, session) {
   })
   
   output$DecaturWeather<-renderDT({
-    datatable(DecaturNextDay, extensions="FixedColumns", style="bootstrap4",
-              rowname=FALSE, options=list(pageLength=5, fixedColumns=list(leftColumns=1)))
+    datatable(DecaturNextDay, escape=FALSE, extensions="FixedColumns", style="bootstrap4",
+              rowname=FALSE, options=list(pageLength=5, dom="tp", fixedColumns=list(leftColumns=1)))
   })
   
   output$NECityPlot<-renderPlot({
@@ -447,8 +492,8 @@ server <- function(input, output, session) {
   })
   
   output$NECityWeather<-renderDT({
-    datatable(NECityNextDay, extensions="FixedColumns", style="bootstrap4",
-              rowname=FALSE, options=list(pageLength=5, fixedColumns=list(leftColumns=1)))
+    datatable(NECityNextDay, escape=FALSE, extensions="FixedColumns", style="bootstrap4",
+              rowname=FALSE, options=list(pageLength=5, dom="tp", fixedColumns=list(leftColumns=1)))
   })
   
   output$RuloPlot<-renderPlot({
@@ -456,8 +501,8 @@ server <- function(input, output, session) {
   })
   
   output$RuloWeather<-renderDT({
-    datatable(RuloNextDay, extensions="FixedColumns", style="bootstrap4",
-              rowname=FALSE, options=list(pageLength=5, fixedColumns=list(leftColumns=1)))
+    datatable(RuloNextDay, escape=FALSE, extensions="FixedColumns", style="bootstrap4",
+              rowname=FALSE, options=list(pageLength=5, dom="tp", fixedColumns=list(leftColumns=1)))
     })
   
   output$LouisvillePlot<-renderPlot({
@@ -465,8 +510,8 @@ server <- function(input, output, session) {
   })
   
   output$LouisvilleWeather<-renderDT({
-    datatable(LouisvilleNextDay, extensions="FixedColumns", style="bootstrap4",
-              rowname=FALSE, options=list(pageLength=5,fixedColumns=list(leftColumns=1)))
+    datatable(LouisvilleNextDay, escape=FALSE, extensions="FixedColumns", style="bootstrap4",
+              rowname=FALSE, options=list(pageLength=5, dom="tp", fixedColumns=list(leftColumns=1)))
   })
   
   output$MasterAngler<-renderDT({
