@@ -1,8 +1,8 @@
 #Install Packages if Necessary
-list.of.packages <- c("shiny", "remotes", "tidyverse","sf","leaflet","shinythemes","DT","bslib",
-                      "dataRetrieval","lubridate","magrittr","owmr","shinyjs")
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) install.packages(new.packages)
+# list.of.packages <- c("shiny", "remotes", "tidyverse","sf","leaflet","shinythemes","DT","bslib",
+#                       "dataRetrieval","lubridate","magrittr","owmr","shinyjs")
+# new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+# if(length(new.packages)) install.packages(new.packages)
 
 #Library Packages and install github packages
 library(shiny)
@@ -12,7 +12,7 @@ library(sf)
 library(leaflet)
 library(shinythemes)
 library(DT)
-remotes::install_github("ColinFay/geoloc")
+# remotes::install_github("ColinFay/geoloc")
 library(geoloc)
 library(bslib)
 library(dataRetrieval)

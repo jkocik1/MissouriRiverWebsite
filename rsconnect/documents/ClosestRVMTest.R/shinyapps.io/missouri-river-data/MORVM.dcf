@@ -1,0 +1,13 @@
+name: MORVM
+title: MORVM
+username: missouri-river-data
+account: missouri-river-data
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11735915
+bundleId: 8821726
+url: https://missouri-river-data.shinyapps.io/MORVM/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md
