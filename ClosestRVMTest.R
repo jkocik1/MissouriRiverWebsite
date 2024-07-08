@@ -121,9 +121,9 @@ SiouxCityNextDay<-SiouxCityForecast|>
   mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust)|>
   rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
-         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
+         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust")
 
 #Decatur Gage Height
 DecaturGageheight<-readNWISuv(siteNumbers="06601200", parameterCd="00065", StDate, Sys.Date(), tz="America/Chicago")
@@ -169,9 +169,9 @@ DecaturNextDay<-DecaturForecast|>
   mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust)|>
   rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
-         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
+         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust")
 
 #Nebraska City Gage height
 NECityGageheight<-readNWISuv(siteNumbers="06807000", parameterCd="00065", StDate, Sys.Date(), tz="America/Chicago")
@@ -217,9 +217,9 @@ NECityNextDay<-NECityForecast|>
   mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust)|>
   rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
-         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
+         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust")
 
 #Rulo Gage height
 RuloGageheight<-readNWISuv(siteNumbers="06813500", parameterCd="00065", StDate, Sys.Date(), tz="America/Chicago")
@@ -265,9 +265,9 @@ RuloNextDay<-as.data.frame(RuloForecast)|>
   mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust)|>
   rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
-         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
+         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust")
 
 #Platte River at Louisville
 LouisvilleGageheight<-readNWISuv(siteNumbers="06805500", parameterCd="00065", StDate, Sys.Date(), tz="America/Chicago")
@@ -313,9 +313,9 @@ LouisvilleNextDay<-LouisvilleForecast|>
   mutate(
     Time=format(as.POSIXct(DateTimeCentral), format="%m/%d %H:%M")
   )|>
-  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust, rain_3h)|>
+  select(Time, Icon, weather_description,temp, feels_like, wind_speed, wind_gust)|>
   rename(" "="Icon",Weather="weather_description", Temp="temp", "Feels Like"="feels_like",
-         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust", Rainfall="rain_3h")
+         "Wind Speed"="wind_speed", "Gust Speed"= "wind_gust")
 
 #Links for Boat Ramps
 Test<-datatable(BoatRamps2, style="bootstrap4",rowname=FALSE, options=list(
@@ -532,17 +532,6 @@ server <- function(input, output, session) {
       elem.setAttribute("class", "navbar-collapse collapse");
     ')
   })
-  
-  
-  observeEvent(input$navBar, {
-    runjs('
-      var elem = document.getElementsByClassName("navbar-collapse")[0]
-      elem.setAttribute("aria-expanded", "false");
-      elem.setAttribute("class", "navbar-collapse collapse");
-    ')
-  })
-  
-  
 }
 
 # Run the application 

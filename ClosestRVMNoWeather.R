@@ -398,13 +398,7 @@ server <- function(input, output, session) {
       )
       ))
     )})
-  observeEvent(input$navBar, {
-    runjs('
-      var elem = document.getElementsByClassName("navbar-collapse")[0]
-      elem.setAttribute("aria-expanded", "false");
-      elem.setAttribute("class", "navbar-collapse collapse");
-    ')
-  })
+
   
   
   observeEvent(input$navBar, {
