@@ -1,6 +1,7 @@
 # First Time startup and Troubleshooting
 
-ClosestRVMTest is not currently running due to issues with the weather API this issue may be resolved, but due to loading times the weather may be scrapped
+ClosestRVMTest is currently running prior issues seem to have been fixed on the owmr package's side of things, but due to loading times the weather may be scrapped
+
 ClosestRVMNoWeather is the working version currently deployed.
 
 Change file path so that the necessary .csv files can be found.
@@ -24,7 +25,7 @@ This page works the same as Current RVM, however you can manually input a gps lo
 This Page displays Missouri River boat launches as well as there associated miles. Each one has approximate GPS locations via a google maps link. It opens automatically in google maps and on devices without google maps it should open in the same browser the webpage is open in.
 
 ## River Conditions:
-For all listed locations a map of recent gage height as well as flood stages will be displayed. By clicking on weather (NOT CURRENTLY WORKING), the weather every three hours will be displayed including several metrics.
+For all listed locations a map of recent gage height as well as flood stages will be displayed. By clicking on weather , the weather every three hours will be displayed including several metrics.
 
 ## Fish:
 
