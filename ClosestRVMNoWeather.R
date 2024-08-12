@@ -251,6 +251,7 @@ ui <- fluidPage(useShinyjs(),
                                                  numericInput("Lat", "Latitude", value=40.84615),
                                                  numericInput("Long", "Longitude", value=-95.84198),
                                                  textOutput("ClosestRvm"),
+                                                 textOutput("RVMBend"),
                                                  leafletOutput("mymap"),
                                                  tags$style(type="text/css",
                                                             ".shiny-output-error{visibility: hidden;}",
@@ -283,7 +284,8 @@ ui <- fluidPage(useShinyjs(),
                                                  h2("Nebraska Master Angler and State Records"),
                                                  "This information is based on the ",
                                                  tags$a(href="https://outdoornebraska.gov/guides-maps/fishing-guides-reports/fishing-guide/",
-                                                        "2023 NGPC Fishing Guide", target="_blank"),
+                                                        "2024 NGPC Fishing Guide", target="_blank"),
+                                                 " and may not be up to date with in year record changes.",
                                                  DTOutput("MasterAngler"))),
                              tabPanel("Online Resources",
                                       icon = icon("book"),
@@ -321,6 +323,10 @@ server <- function(input, output, session) {
     paste0("The closest rivermile is ", NearestRvm(input$Long, input$Lat)[[1]][[3]], " and is ", round(NearestRvm(input$Long, input$Lat)[[1]][[10]][[1]], 3), " meters away from this point.")
   })
   
+  output$RVMBend<-renderText({
+    req(input$Long)
+    req(input$Lat)
+    paste0("This is located on ", NearestRvm(input$Long, input$Lat)[[1]][5], " (", NearestRvm(input$Long, input$Lat)[[1]][[6]],")")}) 
   
   output$GPSRVM<-renderText({
     req(input$myBtn_lon)
@@ -341,14 +347,16 @@ server <- function(input, output, session) {
   
   output$mymap<-renderLeaflet({
     leaflet()|>
-      addTiles()|>
+      addProviderTiles(providers$Esri.WorldImagery, options=providerTileOptions(minZoom = 1, maxZoom = 19))|>
+      addProviderTiles(providers$CartoDB.VoyagerOnlyLabels, options=providerTileOptions(minZoom = 1, maxZoom = 19))|>
       addMarkers(lng = input$Long, lat = input$Lat)
   })
   output$lf<-renderLeaflet({
     req(input$myBtn_lon)
     req(input$myBtn_lat)
     leaflet()|>
-      addTiles()|>
+      addProviderTiles(providers$Esri.WorldImagery, options=providerTileOptions(minZoom = 1, maxZoom = 19))|>
+      addProviderTiles(providers$CartoDB.VoyagerOnlyLabels, options = providerTileOptions(minZoom = 1, maxZoom = 19))|>
       setView(as.numeric(input$myBtn_lon), as.numeric(input$myBtn_lat), zoom=17)|>
       addMarkers(as.numeric(input$myBtn_lon), as.numeric(input$myBtn_lat))
   })
@@ -389,7 +397,9 @@ server <- function(input, output, session) {
   
   output$MasterAngler<-renderDT({
     datatable(MasterAngler2, style="bootstrap4", rowname=FALSE, container = sketch, options=list(
-      pageLength=75, order = list(0, "asc"), columnDefs = list(list(
+      pageLength=75, order = list(0, "asc"),
+      columnDefs = list(list(
+        targets= "_all", className = "dt-left",
         targets = 1:4,
         render = JS(
           "function(data, type, row, meta) {",
